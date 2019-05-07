@@ -1,0 +1,75 @@
+{
+    "title": "MLB v3 Projections DFSR",
+    "description": "MLB projections API from DailyFantasySportsRankings.com.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/fantasydata.net/mlb-v3-projections-dfsr/1.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "http://api.fantasydata.net/v3/mlb/projections-dfsr",
+                    "https://api.fantasydata.net/v3/mlb/projections-dfsr",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "apiKeyHeader": {
+                "label": "Ocp-Apim-Subscription-Key (apiKeyHeader)",
+                "viewClass": "TextFieldView"
+            },
+            "apiKeyQuery": {
+                "label": "subscription-key (apiKeyQuery)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ProjectedPlayerGameStatsByDateWInjuriesLineupsDfsSalaries": {
+            "main": "./lib/actions/ProjectedPlayerGameStatsByDateWInjuriesLineupsDfsSalaries.js",
+            "title": "Projected Player Game Stats by Date (w/ Injuries, Lineups, DFS Salaries)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProjectedPlayerGameStatsByDateWInjuriesLineupsDfsSalaries.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ProjectedPlayerGameStatsByPlayerWInjuriesLineupsDfsSalaries": {
+            "main": "./lib/actions/ProjectedPlayerGameStatsByPlayerWInjuriesLineupsDfsSalaries.js",
+            "title": "Projected Player Game Stats by Player (w/ Injuries, Lineups, DFS Salaries)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ProjectedPlayerGameStatsByPlayerWInjuriesLineupsDfsSalaries.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
